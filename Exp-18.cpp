@@ -67,3 +67,159 @@ int main()
 /*Output
 Stack is empty
 */
+/*Name-Purvansha Gehlod
+PRN-22070123088
+Exp_18
+Stack implementation using array.
+menu options - i) Push ii) Pop iii) Display iv) exit
+*/
+#include <iostream>
+using namespace std;
+
+class Stack {
+private:
+    int maxSize;
+    int top;
+    int* stackArray;
+
+public:
+    Stack(int size) {
+        maxSize = size;
+        top = -1;
+        stackArray = new int[maxSize];
+    }
+
+    ~Stack() {
+        delete[] stackArray;
+    }
+
+    bool isFull() {
+        return top == maxSize - 1;
+    }
+
+    bool isEmpty() {
+        return top == -1;
+    }
+
+    void push(int value) {
+        if (isFull()) {
+            cout << "Stack is full. Cannot push." << endl;
+        } else {
+            stackArray[++top] = value;
+            cout << "Pushed " << value << " onto the stack." << endl;
+        }
+    }
+
+    void pop() {
+        if (isEmpty()) {
+            cout << "Stack is empty. Cannot pop." << endl;
+        } else {
+            cout << "Popped " << stackArray[top--] << " from the stack." << endl;
+        }
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout << "Stack is empty." << endl;
+        } else {
+            cout << "Stack elements: ";
+            for (int i = 0; i <= top; i++) {
+                cout << stackArray[i] << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    int size;
+    cout << "Enter the size of the stack: ";
+    cin >> size;
+
+    Stack stack(size);
+
+    int choice;
+    while (true) {
+        cout << "Menu options:" << endl;
+        cout << "1. Push" << endl;
+        cout << "2. Pop" << endl;
+        cout << "3. Display" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                int value;
+                cout << "Enter a value to push: ";
+                cin >> value;
+                stack.push(value);
+                break;
+            case 2:
+                stack.pop();
+                break;
+            case 3:
+                stack.display();
+                break;
+            case 4:
+                cout << "Exiting the program." << endl;
+                return 0;
+            default:
+                cout << "Invalid choice. Please select a valid option." << endl;
+        }
+    }
+
+    return 0;
+}
+/*Output
+Enter the size of the stack: 5
+Menu options:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 1
+Enter a value to push: 10
+Pushed 10 onto the stack.
+
+Menu options:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 1
+Enter a value to push: 20
+Pushed 20 onto the stack.
+
+Menu options:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 3
+Stack elements: 10 20 
+
+Menu options:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 2
+Popped 20 from the stack.
+
+Menu options:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 3
+Stack elements: 10 
+
+Menu options:
+1. Push
+2. Pop
+3. Display
+4. Exit
+Enter your choice: 4
+Exiting the program.
+*/
